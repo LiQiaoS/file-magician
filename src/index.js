@@ -55,7 +55,7 @@ export async function run(version) {
     .argument('[path]', 'Target directory or file (default: current dir)')
     .option('--dry-run', 'Preview changes without applying them')
     .option('-r, --recursive', 'Process subdirectories', true)
-    .option('--start <n>', 'Starting number for {n}', parseInt, 1)
+    .option('--start <n>', 'Starting number for {n}', Number, 1)
     .option('--lower', 'Convert names to lowercase')
     .option('--upper', 'Convert names to uppercase')
     .option('--title', 'Convert names to Title Case')
@@ -94,7 +94,7 @@ export async function run(version) {
     .option('-r, --recursive', 'Process subdirectories', true)
     .option('--hash', 'Use content hashing for exact matches (slower)')
     .option('--algo <algo>', 'Hash algorithm: sha256, sha1, md5', 'sha256')
-    .option('--min-size <bytes>', 'Minimum file size', parseInt, 1)
+    .option('--min-size <bytes>', 'Minimum file size', Number, 1)
     .option('--delete', 'Delete duplicates permanently')
     .option('--trash', 'Move duplicates to recycle bin')
     .action(async (path, opts) => {
@@ -153,7 +153,7 @@ export async function run(version) {
     .option('--dry-run', 'Preview changes without applying them')
     .option('--resize <WxH>', 'Resize to fit dimensions (e.g., 800x600)')
     .option('--format <ext>', 'Output format: jpg, png, webp, avif, tiff')
-    .option('--quality <n>', 'Output quality 1-100', parseInt, 85)
+    .option('--quality <n>', 'Output quality 1-100', Number, 85)
     .option('--strip', 'Remove EXIF/metadata')
     .option('--grayscale', 'Convert to grayscale')
     .action(async (path, opts) => {

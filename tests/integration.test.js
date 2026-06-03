@@ -109,7 +109,7 @@ describe('dedupe', () => {
       dryRun: true,
       recursive: true,
       hash: false,
-      'min-size': 1,
+      minSize: 1,
       delete: false,
     });
     // If we got here without throwing, the scan worked

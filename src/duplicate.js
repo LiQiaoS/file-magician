@@ -27,7 +27,7 @@ const DUPE_DEFAULTS = {
   dryRun: false,
   hash: false,
   algo: 'sha256',
-  'min-size': 1,
+  minSize: 1,
   delete: false,
   trash: false,
 };
@@ -51,7 +51,7 @@ export async function dedupe(targets, opts) {
   });
 
   const filterFn = buildFilter({
-    minSize: o['min-size'],
+    minSize: o.minSize,
   });
   const candidates = files.filter(filterFn);
 
