@@ -45,9 +45,10 @@ export async function rename(pattern, targets, opts) {
   info(`Scanning ${root} ...`);
 
   // Discover files
-  const files = walk(opts.recursive ? [root] : root, {
+  const files = walk([root], {
     hidden: optsWithDefaults.hidden,
     directories: false,
+    recursive: optsWithDefaults.recursive !== false,
   });
 
   // Apply filters

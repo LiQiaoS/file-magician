@@ -44,9 +44,10 @@ export async function dedupe(targets, opts) {
 
   info(`Scanning ${root} ...`);
 
-  const files = walk(o.recursive ? [root] : root, {
+  const files = walk([root], {
     hidden: false,
     directories: false,
+    recursive: o.recursive !== false,
   });
 
   const filterFn = buildFilter({

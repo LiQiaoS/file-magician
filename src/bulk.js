@@ -79,9 +79,10 @@ async function copyOrMove(action, source, dest, opts) {
     return;
   }
 
-  const files = walk(opts.recursive ? [srcRoot] : srcRoot, {
+  const files = walk([srcRoot], {
     hidden: !opts['no-hidden'],
     directories: false,
+    recursive: opts.recursive !== false,
   });
 
   const filterFn = buildFilter({ ext: opts.ext, hidden: !opts['no-hidden'] });
@@ -143,9 +144,10 @@ async function copyOrMove(action, source, dest, opts) {
 async function deleteFiles(target, opts) {
   const root = resolve(target);
 
-  const files = walk(opts.recursive ? [root] : root, {
+  const files = walk([root], {
     hidden: !opts['no-hidden'],
     directories: false,
+    recursive: opts.recursive !== false,
   });
 
   const filterFn = buildFilter({ ext: opts.ext, hidden: !opts['no-hidden'] });
@@ -200,9 +202,10 @@ async function touchFiles(target, opts) {
   const root = resolve(target);
   const now = new Date();
 
-  const files = walk(opts.recursive ? [root] : root, {
+  const files = walk([root], {
     hidden: !opts['no-hidden'],
     directories: false,
+    recursive: opts.recursive !== false,
   });
 
   const filterFn = buildFilter({ ext: opts.ext, hidden: !opts['no-hidden'] });
@@ -236,9 +239,10 @@ async function touchFiles(target, opts) {
 async function chmodFiles(target, mode, opts) {
   const root = resolve(target);
 
-  const files = walk(opts.recursive ? [root] : root, {
+  const files = walk([root], {
     hidden: !opts['no-hidden'],
     directories: false,
+    recursive: opts.recursive !== false,
   });
 
   const filterFn = buildFilter({ ext: opts.ext, hidden: !opts['no-hidden'] });

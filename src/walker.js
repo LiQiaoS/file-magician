@@ -17,6 +17,7 @@ import { resolve, relative } from 'node:path';
  * @property {boolean} [directories=false]  Include directories in output
  * @property {boolean} [absolute=true]      Return absolute paths
  * @property {number}  [maxDepth=Infinity]  Directory recursion limit
+ * @property {boolean} [recursive=true]     Recurse into subdirectories
  * @property {string[]} [patterns]          Glob overrides
  */
 
@@ -34,6 +35,7 @@ export function walk(paths, opts = {}) {
     directories = false,
     absolute = true,
     maxDepth = Infinity,
+    recursive = true,
     patterns,
   } = opts;
 
@@ -48,6 +50,12 @@ export function walk(paths, opts = {}) {
       sourcePatterns = directories ? ['**'] : ['**/*'];
     }
 
+    // When non-recursive, stay at the root directory only.
+    // fast-glob deep: 0 = current dir, 1 = one sub-level, etc.
+    const effectiveDepth = recursive
+      ? (maxDepth === Infinity ? undefined : maxDepth)
+      : 0;
+
     const found = fg.sync(sourcePatterns, {
       cwd,
       absolute,
@@ -55,7 +63,7 @@ export function walk(paths, opts = {}) {
       followSymbolicLinks: followSymlinks,
       onlyDirectories: directories,
       onlyFiles: !directories,
-      deep: maxDepth === Infinity ? undefined : maxDepth,
+      deep: effectiveDepth,
       suppressErrors: true,
     });
 

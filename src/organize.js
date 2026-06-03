@@ -83,9 +83,10 @@ export async function organize(targets, opts) {
 
   info(`Scanning ${root} ...`);
 
-  const files = walk(o.recursive ? [root] : root, {
+  const files = walk([root], {
     hidden: !o['no-hidden'],
     directories: false,
+    recursive: o.recursive !== false,
   });
 
   const filterFn = buildFilter({
