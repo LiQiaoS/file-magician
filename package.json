@@ -1,0 +1,67 @@
+{
+  "name": "file-magician",
+  "version": "0.6.0",
+  "description": "A professional batch file processing tool — rename, organize, deduplicate, bulk operations, and image processing at scale",
+  "keywords": [
+    "batch-rename", "file-organizer", "duplicate-finder",
+    "file-management", "cli", "file-tools"
+  ],
+  "homepage": "https://github.com/liqs/file-magician",
+  "license": "MIT",
+  "author": "liqs",
+  "type": "module",
+  "bin": {
+    "file-magician": "./bin/file-magician.js"
+  },
+  "files": [
+    "bin/",
+    "src/",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "start": "node bin/file-magician.js",
+    "rename": "node bin/file-magician.js rename",
+    "organize": "node bin/file-magician.js organize",
+    "dedupe": "node bin/file-magician.js dedupe",
+    "bulk": "node bin/file-magician.js bulk",
+    "image": "node bin/file-magician.js image",
+    "undo": "node bin/file-magician.js undo",
+    "test": "node --experimental-vm-modules node_modules/.bin/jest --verbose",
+    "test:watch": "node --experimental-vm-modules node_modules/.bin/jest --watch",
+    "test:coverage": "node --experimental-vm-modules node_modules/.bin/jest --coverage",
+    "lint": "eslint src/ tests/ bin/",
+    "lint:fix": "eslint --fix src/ tests/ bin/",
+    "precommit": "npm test && npm run lint"
+  },
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "cli-table3": "^0.6.5",
+    "commander": "^13.1.0",
+    "fast-glob": "^3.3.3",
+    "ora": "^8.2.0"
+  },
+  "optionalDependencies": {
+    "sharp": "^0.34.1"
+  },
+  "devDependencies": {
+    "eslint": "^9.25.1",
+    "jest": "^30.0.0-alpha.6",
+    "neostandard": "^0.12.1"
+  },
+  "jest": {
+    "transform": {},
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/tests/**/*.test.js"
+    ],
+    "setupFilesAfterSetup": []
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

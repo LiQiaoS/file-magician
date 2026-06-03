@@ -1,0 +1,16 @@
+node_modules/
+.DS_Store
+*.log
+npm-debug.log*
+coverage/
+.nyc_output/
+dist/
+build/
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+*.tmp
+temp/
+tmp_test/
