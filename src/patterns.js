@@ -97,9 +97,10 @@ export function compilePattern(pattern, opts = {}) {
 
 // ── Token implementations ──────────────────────────────────────────────────
 
-function numberingToken(ctx, arg) {
+function numberingToken(ctx, arg, opts) {
   const width = arg ? parseInt(arg, 10) : 0;
-  const num = ctx.index + 1; // 1-based
+  const start = (opts && opts.start != null) ? opts.start : 1;
+  const num = ctx.index + start;
   if (width > 0) return String(num).padStart(width, '0');
   // Auto-detect width from total (we don't know total here, use 2 as minimum)
   return String(num).padStart(2, '0');
